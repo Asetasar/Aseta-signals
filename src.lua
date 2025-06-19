@@ -14,7 +14,7 @@ local typeToNumber = {
 }
 
 local signalHandlerHolder = {}
-signalHandlerHolder.__INDEX = signalHandlerHolder
+signalHandlerHolder.__index = signalHandlerHolder
 
 local GC_TIME = 12
 
@@ -141,8 +141,6 @@ function signalHandlerHolder:Fire(...)
     for index, callbackFunction in self._Connections do
         local typeofConnection = self._CallbackFunctionLookup[callbackFunction]
 
-        print(typeofConnection)
-
         if not typeofConnection or typeofConnection == -1 then
             continue
         end
@@ -176,9 +174,7 @@ function signalHandler:InitializeGC()
 end
 
 function signalHandler.New()
-    local _signalHolder = signalHandlerHolder
-
-    setmetatable(_signalHolder, signalHandlerHolder)
+    local _signalHolder = setmetatable({}, signalHandlerHolder)
     _signalHolder._Connections = {}
     _signalHolder._CallbackFunctionLookup = signalHandler.CallbackFunctionLookup
 
