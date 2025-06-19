@@ -46,9 +46,3 @@ connection:ChangeConnectionType(
 )
 connection:Wait() --// Yields until another signal fire.
 ```
-
-$$
-
-
-
-$$
