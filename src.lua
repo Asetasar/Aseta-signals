@@ -9,8 +9,7 @@ local signalHandler = {
 
 local typeToNumber = {
     Connect = 0,
-    Once = 1,
-    DisconnectAfterOnce = 2
+    Once = 1
 }
 
 local signalHandlerHolder = {}
@@ -147,7 +146,7 @@ function signalHandlerHolder:Fire(...)
 
         callbackFunction(...)
 
-        if typeofConnection == 1 or typeofConnection == 2 then
+        if typeofConnection == 1 then
             signalHandler:MarkForCleanup(self, callbackFunction, index)
         end
     end
